@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="application/javascript" src="jQuery/jquery-2.0.3.js"></script>
+</head>
+<body>
+<script type="application/javascript">
+    //$.extend()
+    //$.fn.extend()
+
+//    //当只写一个对象自变量的时候，JQ中扩展插件的形式
+//    $.extend({//这个叫做扩展工具方法
+//        aaa:function(){
+//            alert(1);
+//        },
+//        bbb:function(){
+//            alert(2);
+//        }
+//    });
+//    $.fn.extend({//这个叫做扩展JQ实例方法
+//        aaa:function(){
+//            alert(3);
+//        },
+//        bbb:function(){
+//            alert(4);
+//        }
+//    });
+////    调用
+//    $.aaa();//1 光一个$是一个函数
+//    $.bbb();//2
+//
+//    $().aaa();//3  $()是一个对象
+//    $().bbb();//4
+
+
+    //当只写多个对象自变量的时候，后面的对象都是扩展到第一个对象那个身上
+//    var a={};
+//    $.extend(a,{name:'hello'},{age:30});//这两个对象都会传到a上面
+
+
+//    还可以做深拷贝和浅拷贝(默认)
+//    var a={};
+//    var b={name:'hello'};
+//    var c={name:{age:30}};
+//    $.extend(a,b);//这个时候b的值会赋值到a上
+//    $.extend(a,c);//这个时候c的值会赋值到a上
+//    a.name='hi';//这个时候b的值不会改变
+//    a.name.age=20;//这个时候b的值会改变，要想不改变就$.extend(true,a,c);
+
+    jQuery.extend=jQuery.fn.extend=function(){
+//        定义一些变量
+        if(){} //看是不是深拷贝
+        if(){} //看参数正确不
+        if(){} //看是不是插件情况
+        for(){//可能有多个对象情况
+            if(){}//防止循环引用
+            if(){}//深拷贝
+            else if(){}//浅拷贝
+        }
+    }
+</script>
+</body>
+</html>

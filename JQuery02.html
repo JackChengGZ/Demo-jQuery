@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="application/javascript" src="jQuery/jquery-2.0.3.js"></script>
+    <script type="application/javascript">
+//        (function(window){
+//
+//        })(window)
+//        //在这后面传入了一个window对象，也可以直接在里面用，为什么要传，是为了查找速度，要不然它就要遍历到最顶端的window对象，同时在压缩之后也有用，可以将其压缩为“e”
+//        //同时传入了一个undefined，他是window下面的一个属性，因为在某些浏览器下他可以被修改掉，为了防止在外面进行修改，以传参的形式传入一个undefined
+
+
+//        "use strict";//表示在js要注意规范，但是jQuery是不推荐，因为IE的一些低版本不支持
+//        //#13335  在注释中有类似这样的，这个可以在jQuery官网查询它的更详细解释
+
+
+//        window.a = undefined;
+//        console.log(typeof window.a === 'undefined');//true
+
+//        $.type();
+//        class2type={'[Object String]':'string','[Object Array]':'array'}
+
+
+//        alert('('+'   1111   '.trim()+')');
+
+
+        function Aaa(){}
+        Aaa.prototype.init=function(){};
+        Aaa.prototype.css=function(){};
+        var a1=new Aaa();
+        a1.init();
+        a1.css();
+
+        function jQuery(){
+            return new jQuery.prototype.init();
+        }
+        jQuery.prototype.init=function(){};
+        jQuery.prototype.css=function(){};
+        jQuery.prototype.init.prototype=jQuery.prototype;
+//        在jQuery中的使用
+        jQuery().css();
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

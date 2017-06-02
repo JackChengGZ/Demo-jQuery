@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="jQuery/jquery-2.0.3.js"></script>
+    <script type="application/javascript">
+//        (function(){
+//                var a=0;
+//                function b(){
+//                    alert(11);
+//                }
+//                window.b=b;
+//        })();
+////        alert(a);//在匿名函数中定义多的在外部是无法调用的，无论是变量和函数
+//        b();//将函数瓜挂在window下就可以了
+
+
+
+
+//        //为什么说jQuery 是基于面向对象的
+//        $("#div").css();
+//        $("#div").html();
+//        var arr=new Array();
+//        arr.sort();
+//        arr.push();
+
+
+
+
+
+//        //像这种就类似与实例的方法
+//        $().css();
+//        $().html();
+//        //这个就是扩展工具发方法，它既可以给原生js用，也可以给jQuery对象用，可以吧它看作是最底层的
+//        $.trim();
+//        $.proxy()
+
+
+
+//        function fn1(){
+//            alert(1);
+//        }
+//        function fn2(){
+//            alert(2);
+//        }
+//        var cb= $.Callbacks();
+//        cb.add(fn1);
+//        cb.add(fn2);
+//        cb.fire();//1,2
+//        cb.remove(fn2);
+//        cb.fire()//1
+
+
+
+//        setTimeout(function(){//定时器是一个异步的，不会影响后续代码的执行
+//            alert(1);
+//        },1000);
+//        alert(2);//先会弹出2，一秒钟之后在弹出1
+//        采用延迟对象的写法
+//        var dfd= $.Deferred();
+//        setTimeout(function(){
+//            alert(1);
+//            dfd.resolve();
+//        },1000);
+//        dfd.done(function(){
+//            alert(2);
+//        })
+
+
+
+
+//        $("#div").data('name','hello');
+//        $("#div").data('name');
+
+
+        //通过队列管理，先是queue后dequeue
+        $("#div").animate({left:100});
+        $("#div").animate({top:100});
+        $("#div").animate({width:100});
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
