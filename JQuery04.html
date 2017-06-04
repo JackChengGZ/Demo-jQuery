@@ -48,6 +48,10 @@
 //    $.extend(a,c);//这个时候c的值会赋值到a上
 //    a.name='hi';//这个时候b的值不会改变
 //    a.name.age=20;//这个时候b的值会改变，要想不改变就$.extend(true,a,c);
+    var a={ name:{job:'IT'}};
+    var b={name:{age:30}};
+    $.extend(true,a,b);//结果： a={name:{job:'IT',age:30}}
+    console.log(a);
 
     jQuery.extend=jQuery.fn.extend=function(){
 //        定义一些变量
@@ -55,11 +59,13 @@
         if(){} //看参数正确不
         if(){} //看是不是插件情况
         for(){//可能有多个对象情况
-            if(){}//防止循环引用
+            if(){}//防止循环引用  例如：var a={};$.extend(a,{name:{a}});这样就会循环引用
             if(){}//深拷贝
             else if(){}//浅拷贝
         }
     }
+
+
 </script>
 </body>
 </html>

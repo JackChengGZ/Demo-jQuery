@@ -282,15 +282,15 @@ jQuery.fn = jQuery.prototype = {
 // Give the init function the jQuery prototype for later instantiation
 jQuery.fn.init.prototype = jQuery.fn;
 
-jQuery.extend = jQuery.fn.extend = function() {//静态方法和实例方法   这个是jquery的继承
-	var options, name, src, copy, copyIsArray, clone,
+jQuery.extend = jQuery.fn.extend = function() {//静态方法和实例方法   这个是jquery的继承 其实这个是一种拷贝继承(像这种比较广泛)  JS中其实还有一些类式继承(类似于后台的) 原型继承(prototype)
+	var options, name, src, copy, copyIsArray, clone,//定义变量
 		target = arguments[0] || {},
 		i = 1,
 		length = arguments.length,
-		deep = false;
+		deep = false;//是否为深拷贝，默认为false
 
 	// Handle a deep copy situation
-	if ( typeof target === "boolean" ) {
+	if ( typeof target === "boolean" ) {//处理深拷贝
 		deep = target;
 		target = arguments[1] || {};
 		// skip the boolean and the target
@@ -298,44 +298,44 @@ jQuery.extend = jQuery.fn.extend = function() {//静态方法和实例方法   这个是jque
 	}
 
 	// Handle case when target is a string or something (possible in deep copy)
-	if ( typeof target !== "object" && !jQuery.isFunction(target) ) {
+	if ( typeof target !== "object" && !jQuery.isFunction(target) ) {//判断目标元素target是不是一个对象或者是一个函数，如果不是，就把target赋值为一个对象
 		target = {};
 	}
 
 	// extend jQuery itself if only one argument is passed
-	if ( length === i ) {
+	if ( length === i ) {//看是不是一个插件，是通过length来判断
 		target = this;
 		--i;
 	}
 
-	for ( ; i < length; i++ ) {
+	for ( ; i < length; i++ ) {//主要是可能有多个对象
 		// Only deal with non-null/undefined values
-		if ( (options = arguments[ i ]) != null ) {
+		if ( (options = arguments[ i ]) != null ) {//主要看这些对象是不是有值,如果有值就进入
 			// Extend the base object
 			for ( name in options ) {
-				src = target[ name ];
-				copy = options[ name ];
+				src = target[ name ];//这个是对象的为name的值
+				copy = options[ name ];//这个是对象中的name的值，如果是一个对象，就获取他为name的值
 
 				// Prevent never-ending loop
-				if ( target === copy ) {
+				if ( target === copy ) {//这个主要是防止循环引用，如果被循环引用了，就阻断
 					continue;
 				}
 
-				// Recurse if we're merging plain objects or arrays
-				if ( deep && copy && ( jQuery.isPlainObject(copy) || (copyIsArray = jQuery.isArray(copy)) ) ) {
+				// Recurse if we're merging plain objects or arrays  //深拷贝
+				if ( deep && copy && ( jQuery.isPlainObject(copy) || (copyIsArray = jQuery.isArray(copy)) ) ) {//deep为真并且copy有值   而且是一个对象或者是一个数组
 					if ( copyIsArray ) {
 						copyIsArray = false;
-						clone = src && jQuery.isArray(src) ? src : [];
+						clone = src && jQuery.isArray(src) ? src : [];//这个是针对数组的情况
 
 					} else {
-						clone = src && jQuery.isPlainObject(src) ? src : {};
+						clone = src && jQuery.isPlainObject(src) ? src : {};//这个是针对对象的情况
 					}
 
 					// Never move original objects, clone them
-					target[ name ] = jQuery.extend( deep, clone, copy );
+					target[ name ] = jQuery.extend( deep, clone, copy );//调函数本身
 
 				// Don't bring in undefined values
-				} else if ( copy !== undefined ) {
+				} else if ( copy !== undefined ) {//浅拷贝  当copy的值不是undefined的时候
 					target[ name ] = copy;
 				}
 			}
@@ -343,7 +343,7 @@ jQuery.extend = jQuery.fn.extend = function() {//静态方法和实例方法   这个是jque
 	}
 
 	// Return the modified object
-	return target;
+	return target;//返回这个对象
 };
 
 jQuery.extend({
