@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+</head>
+<body>
+<script type="application/javascript" src="jQuery/jquery-2.0.3.js"></script>
+<script type="application/javascript">
+//    jQuery.extend({//方法后面加的括号，否则就是属性
+//        expando:生成唯一JQuery字符串(内部),
+//        noConflict():防止冲突,
+//        isReady:DOM是否加载完(内部),
+//        readyWait:等待多少文件的计数器(内部),
+//        holdReady():推迟dom触发,
+//        ready():准备DOM触发,
+//        isFunction():是否为函数
+//        isArray():是否为数组
+//        isWindow():是否为window
+//        isNumberic():是否位数字
+//        type():判断数据类型
+//        isPlainObject():是否为对象自变量
+//        isEmptyObject():是否为空的对象
+//        error():抛出异常
+//        parseHTML():解析节点
+//        parseJSON():解析JSON
+//        parseXML():解析XML
+//        noop():空函数
+//        globalEval():全局解析JS
+//        camelCase():转驼峰
+//        nodeName():是否为指定节点名(内部)
+//        each():遍历集合
+//        trim():去前后空格
+//        makeArray():类数组转真数组
+//        inArray():数组版indexof
+//        merge():合并数组
+//        grep():过滤新数组
+//        map():映射新数组
+//        guid:唯一标识符(内部)
+//        proxy():改this指向
+//        access():多功能值操作(内部)
+//        now():当前时间
+//        swap():css交换(内部 )
+//    })
+jQuery.ready.promise=function(){}//检测DOM的异步操作(内部)
+
+function isArraylike(){}//类似数组的判断(内部)
+
+
+
+
+//    expando
+//    alert($.expando);
+
+
+//noConflict()
+//    var miaov= $.noConflict();
+//    var $=123;
+//    miaov(function(){
+//        alert($);
+//    })
+
+
+//    DOM 加载
+//    $(function(){//它是DOM加载完就会执行下一步，比如<img src="">是img标签加载过来就会执行下一步 ，而window.onload是等它文件加载过来再执行函数，速度上要快一点
+//        //其实就是$(document).ready(function(){}) == $().ready()  但是和 $.ready()不同，它是一个工具方法
+////        $().ready()调用的是jQuery.ready.promise().done().(fn); 创建了一个延迟对象  这个里面最终调用的都是jQuery.ready==$.ready 接下来就是readyList.resolve(document,[jQuery]);这个延迟对象走完了就是执行fn
+//    })
+////    DOMContentLoaded:这个是原生DOM加载事件的实现
+//    window.onload=function(){//它是等页面所有的东西加载完
+//
+//    }
+//    $.holdReady(true);
+//    $.getScript('a.js',function(){
+//        $.holdReady(false);
+//    });
+//    $(function(){
+//        alert(2);
+//    })
+
+//    isFunction()
+//    function show(){}
+//alert($.isFunction(show));//true
+
+
+//    isArray()
+//    alert(Array.isArray([]));//true
+
+//    isWindow()
+//    alert($.isWindow(window))//true
+
+//    type()
+//var a='hello';
+//    alert($.type(a));//string
+//    这个和原生的typeof还是有区别的，主要typeof在某些判断上还是不准确的
+//    主要是利用 core_toString.call(obj)这句话
+//    alert({}.toString.call([]))//object Array
+
+
+//isPlainObject()
+//var obj={};
+//    alert($.isPlainObject(obj));//true
+
+//isEmptyObject()
+//var obj={name:'json'};
+//    alert($.isEmptyObject(obj));//false
+//    function Aaa(){}
+//    Aaa.prototype.constructor=Aaa;
+//    Aaa.prototype.show=function(){}
+//    for(var attr in Aaa.prototype){
+//        alert(attr);
+//    }
+
+//    error()
+//$.error("这是错误信息")
+
+//parseHTML().
+//var str="<li></li><li></li>";
+//console.log($.parseHTML(str));
+
+//    parseJson()
+//    var str='{"name":"hello"}';//严格的json字符串
+//alert($.parseJSON(str).name);//解析成一个真正的json 弹出hello
+//    在js中可以和JSON.parse()类似的还有eval()这个方法，但是从安全性能上来说JSON.parse()要好 eval() 相当于一个window的一个属性，如果在函数中相当于一个局部变量(一个关键字)，window.eval()和eval()有点不同的
+//    与此相反的JSON.stringify(),他可以将json转换为字符串
+
+//parseXML()  和 parseJson()差不多
+
+//globalEval()
+//    function test(){
+////        jQuery.globalEval("var newVar=true;");//如果采用这一行就可以alert(newVar);
+//        var newVar=true;
+//    }
+//    test();
+//    alert(newVar);//这个是会报错的，找不到，因为不是全局的
+
+
+//    nodeName()
+//    $(function(){
+//        alert($.nameName(document.documentElement,'html'));//true document.documentElement就是html标签
+//        alert($.nameName(document.body,'body'));
+//    })
+
+
+//    each()
+//    var arr=["a","b","c","d","e","f"];//其他的类数组也是的 arguments childNodes getElementByTagName
+//    $.each(arr,function(i,val){//如果将arr换成json  那么i的值就是json的key，val就是值
+////        alert(i);
+//        alert(val);
+//    })
+
+
+//    trim()
+//    var str='   hello   ';
+//    alert('('+str+')');
+//    alert('('+ $.trim(str)+')');
+//    //利用原生的es5
+//    alert('('+str.trim()+')');
+
+
+//    makeArray()
+//window.onload=function(){
+//    var aDiv=document.getElementsByTagName('div');
+//    var str="hello";
+//    console.log($.makeArray(aDiv));
+//    console.log($.makeArray(str));
+//    console.log($.makeArray(str,{length:0}));//内部使用两个参数，外部使用一个参数
+//}
+
+//inArray()
+//var arr=["a","b","c","d","e","f"];
+//    alert($.inArray('b',arr));//1
+
+//    merge()
+//if :$.merge(['a','b'],['c','d']);
+//    else:$.merge(['a','b'],{0:"c",1:"d"});
+
+//grep() 过滤
+//    var arr=[1,2,3,4];
+//arr=$.grep(arr,function(n,i){
+//    return n>2;
+//})//如果在加一个参数true  那么alert出来的就只是1，2
+//    alert(arr);//只有3，4
+
+
+//map() 映射
+//var arr=[1,2,3,4];
+//    arr=$.map(arr,function(n,i){
+//        return n+1;
+//    })
+//console.log(arr);//2,3,4,5
+
+
+//guid(),//唯一的标识符 内部使用
+
+
+////proxy() jquery 中改变this指向的方法
+//function show(n1,n2){
+//    alert(n1,n2);
+//    alert(this);
+//}
+//show()  //window
+//$.proxy(show,document)(3,4)//document是this指向的地方
+
+
+//    access()
+//像$().css() $().attr()都可以为元素设置样式和属性
+//特别是当里面要设置多个值的时候，在jQuery内是通过access这个方法来设置的
+
+
+//    now()获取当前时间
+//    $(function(){
+//        alert($.now());//弹出来的是一个时间戳
+//    })
+
+
+//swap()
+     $(function(){
+         alert($("#div").width());
+         alert($("#div").get(0).offsetWidth());//这个是原生js获取它的宽度  一个重要的区别就是jQuery可以获取到影藏的div的宽(就是利用swap())，但是原生js不可以
+     })
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="application/javascript" src="jQuery/jquery-2.0.3.js"></script>
+</head>
+<body>
+<script type="application/javascript">
+//    jQuery.extend({//说明在下面扩展的是工具方法
+//        Deferred: function( func ) {},
+//        when:function( subordinate /* , ..., subordinateN */ ){}
+//    })
+    //然后机会得到$.Deferred() 和$.when()这两个方法
+
+
+//    $.Deferred()是基于$.Callbacks()开发的
+//    var cb= $.Callbacks();
+//    setTimeout(function(){
+//        alert(111);
+//        cb.fire();
+//    },1000);
+//    cb.add(function(){
+//        alert(222);
+//    });//结果是 111  222
+//
+//    var dfd= $.Deferred();
+//    setTimeout(function(){
+//        alert(111);
+//        dfd.resolve();//与之相反的有一个reject  notify
+//    },1000);
+//    dfd.done(function(){//与之相反的有一个fail progress
+//        alert(222);
+//    });//结果是 111  222
+//
+//    setTimeout(function(){
+//        alert(111);
+//    },1000);
+//    alert(222);//结果是 222 111
+
+
+
+    //一般的写法
+//    $.ajax({
+//        url:'xxx.php',
+//        success:function(){
+//            alert('成功');
+//        },
+//        error:function(){
+//            alert('失败');
+//        }
+//    });
+//    //采用延迟对象
+//    $.ajax('xx.php').done(function(){//成功就会触发resolve()
+//        alert('成功');
+//    }).fail(function(){//失败就会触发 reject()
+//        alert('失败');
+//    })
+
+
+//        var dfd= $.Deferred();
+//        setTimeout(function(){
+//            dfd.resolve();//alert('成功'); 只会执行一次，主要是once
+////            dfd.reject();//alert('失败'); 只会执行一次，主要是once
+//        },1000);
+//        dfd.done(function(){//与之相反的有一个fail progress
+//            alert('成功');
+//        }).fail(function(){
+//            alert('失败');
+//        })
+
+
+//        var dfd= $.Deferred();
+//        setTimeout(function(){
+//            alert(11);
+//            dfd.resolve();
+//        },1000);
+//        dfd.done(function(){
+//            alert('成功');
+//        })
+//        $("input").click(function(){
+//            dfd.done(function(){
+//                alert("bbb");
+//            })
+//        })
+
+
+//    promise这个对象下面有那些方法
+//    state()
+//    always()
+//    then()
+//    promise()
+//    pipe()
+//    done()
+//    faile()
+//    progress()
+//    deferred{}
+
+//    deferred下面有resolve reject notify
+
+
+
+//            var dfd= $.Deferred();
+//            setTimeout(function(){
+//                dfd.reject('hi');
+//            },1000);
+//            dfd.then(function(){//与之相反的有一个fail progress
+//                alert('成功');
+//            },function(){
+//                alert(arguments[0]);//只会弹出这一个 hi
+//            },function(){
+//                alert(3);
+//            })
+
+
+
+
+
+
+//    when()的用法
+//    var dfd= $.Deferred();
+//    $.when()//它返回的也是一个延迟对象
+//    function aaa(){
+//        var dfd= $.Deferred();
+//        dfd.resolve();
+//        return dfd;
+//    }
+//    function bbb(){
+//        var dfd= $.Deferred();
+//        dfd.resolve();
+//        return dfd;
+//    }
+////    aaa().done(function(){
+////        alert('成功')
+////    })
+//    $.when(aaa(),bbb()).done(function(){//这个when的用法就是，当aaa(),bbb()这两个延迟对象都完成之后在触发alert（'成功'）
+//        alert('成功');
+//    });
+
+
+
+//    function aaa(){
+//        var dfd= $.Deferred();
+//        dfd.resolve();
+//        return dfd;
+//    }
+//    function bbb(){
+//        var dfd= $.Deferred();
+//        dfd.reject();
+//        return dfd;
+//    }
+//    $.when(aaa(),bbb()).done(function(){
+////        arguments[0]==aaa()
+//        alert('成功');
+//    }).fail(function(){
+//        alert('失败');//只会触发这个
+//    })
+</script>
+
+</body>
+</html>

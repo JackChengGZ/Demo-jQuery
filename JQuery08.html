@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="application/javascript" src="jQuery/jquery-2.0.3.js"></script>
+</head>
+<body>
+<script type="application/javascript">
+    $(function(){
+        for(var attr in $.support){
+            $('body').append('<div>'+attr+':'+ $.support[attr]+'</div>');
+        }
+    });
+    //$.support是一个工具方法
+//    checkOn:true
+//    optSelected:true
+//    reliableMarginRight:true
+//    boxSizingReliable:true
+//    pixelPosition:true
+//    noCloneChecked:true
+//    optDisabled:true
+//    radioValue:true
+//    checkClone:true
+//    focusinBubbles:false
+//    clearCloneStyle:true
+//    cors:true
+//    ajax:true
+//    boxSizing:true
+
+//    就是判断比如checkOn 如果是true就是支持，false的就是不支持
+</script>
+
+</body>
+</html>

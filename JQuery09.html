@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="application/javascript" src="jQuery/jquery-2.0.3.js"></script>
+</head>
+<body>
+<script type="application/javascript">
+//    $(function(){
+//        //比较一下attr Prop data
+//        $("#div1").attr('name','hello');//设置属性
+//        alert($('#div1').attr('name'));//添加属性
+////        这个attr类似于原生js
+//        document.getElementById('div1').setAttribute('name','hello');
+//        document.getElementById('div1').getAttribute('name');
+//
+//        $("#div1").prop('name','hello');//设置属性
+//        alert($('#div1').prop('name'));//添加属性
+////        这个Prop类似于
+//        document.getElementById('div1')['name']='hello';
+//        document.getElementById('div1')['name'];
+////        前两个比较适合添加什么class id 等
+//
+////        data这种比较适合去加载比较大的数据之类的，类似于json
+//        $("#div1").data('name','hello');//设置属性
+//        alert($('#div1').data('name'));//添加属性
+//    })
+//
+////    当DOM元素与对象之间相互引用，一般都会出现内存泄露
+////    那么当DOM元素与对象之间相互引用是什么意思呢？比如
+//    var oDiv=document.getElementById('div1');
+//    var obj={};
+//    oDiv.name=obj;
+//    obj.age=oDiv;
+//
+//    $("#div1").attr('name',obj);
+//    $("#div1").data('name',obj);//通过data就不会担心内存泄露的问题
+
+
+//数据缓存所用到的接口
+//    jQuery.extend({
+//        acceptData//指的是可以接收元素的范围
+//        hasData
+//        data
+//        removeData
+//        _data//私有
+//        _removeData//私有
+//    });
+//    jQuery.fn.extend({//调用类似于 $("#div1").data('name',obj); 实例方法
+//        data
+//        removeData
+//    });
+
+//jQuery.fn.extend
+//    $(function(){
+//        $("#div1").data('name','hello');
+//        $("#div1").data('name');//他是根据参数的个数来判断是设置还是获取
+//        $("#div1").removeData('name');
+//    })
+
+//jQuery.extend
+//    $(function(){
+//        $.data(document.body,'age',30);
+////        $.removeData(document.body,'age',30);
+//        alert($.data(document.body,'age'));
+//        alert($.hasData(document.body,'age'));
+//    })
+
+//    Data.prototype={//原型下面的方法
+//        key：分配映射的 1，2，3..
+//        set
+//        get
+//        access:掉的是set get
+//        remove
+//        hasData
+//        discard//删除cache下面的属性
+//    }
+
+    var obj={name:'hello'};
+    Object.freeze(obj);//这个是当设置之后只能获取不能修改
+    obj.name='hi';
+    alert(obj.name);//所以弹出的还是hello
+
+</script>
+<div id="div1"></div>
+</body>
+</html>

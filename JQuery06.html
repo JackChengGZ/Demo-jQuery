@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="application/javascript" src="jQuery/jquery-2.0.3.js"></script>
+</head>
+<body>
+<script type="application/javascript">
+//    function aa(){
+//        alert(11);
+//    }
+//    function bb(){
+//        alert(222);
+//    }
+//    var cb= $.Callbacks();
+//    cb.add(aa);//push
+//cb.remove(aa);//splice
+//    cb.add(bb);
+//    cb.fire()//1,2  类似于将aa  bb放到一个数组中，然后通过fire for循环遍历
+//
+//    document.addEventListener('click',function(){alert(12);},false);
+//    document.addEventListener('click',function(){alert(23);},false);
+//    document.addEventListener('click',function(){alert(34);},false);
+
+
+//jQuery.Callbacks = function( options )
+//    这个options有四个参数once memory  unique stopOnFalse
+//    对外提供的方法：add remove has empty disable disabled lock locked fireWith fire fired
+//    一个空数组 list[]
+
+//once 可以设置在$.Callbacks(once)；表示只能被调用一次，比如后面的fire()方法只能调用一次 作用于for循环
+//memory就是可以当$.Callbacks('memory')设置的时候，无论fire()在哪里调用，都会执行里面的函数  作用于add()方法
+//unique就是$.Callbacks('unique')不会让你去触发同一个函数，就是去重  作用于add()方法
+//stopOnFalse就添加的函数返回的是false，在后是不会执行的 ，作用于for循环
+    这些参数可以通过空格隔开   $.Callbacks('once memory')
+</script>
+</body>
+</html>

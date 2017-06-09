@@ -9,27 +9,27 @@
         例如：在里面写window.$=$;就可以了，就是把$这个方法挂在了window对象上
     */
     //
-    //(21-94行定义了一些变量和函数，其中最重要的jQuery=function(){}就是平时用到的$(),jQuery())
+    //(21-94行定义了一些变量和函数，其中最重要的jQuery=function(){}就是平时用到的$(),jQuery())JQuery01.html JQuery02.html
     //
-    //(96-283行主要是给JQ添加一些对象和属性，JQ是一个基于面向对象的)
+    //(96-283行主要是给JQ添加一些对象和属性，JQ是一个基于面向对象的)JQuery03.html JQuery02.html
     //
-    //(285-347行 extend：JQ的继承方法，便于后期维护和编写插件)
+    //(285-347行 extend：JQ的继承方法，便于后期维护和编写插件)JQuery04.html
     //
-    //(349-817行jQuery.extend():扩展一些工具方法)
+    //(349-817行jQuery.extend():扩展一些工具方法)JQuery05.html
     //
     //(877-2856行 Sizzle:复杂选择器的实现)
     //
-    //(2880-3042行Callbacks:jquery中的回调对象：对函数的一个统一管理)
+    //(2880-3042行Callbacks:jquery中的回调对象：对函数的一个统一管理)  JQuery06.html
     //
-    //(3043-3183行Deferred:延迟对象：对异步的统一管理)
+    //(3043-3183行Deferred:延迟对象：对异步的统一管理)  JQuery07.html
     //
-    //(3184-3295行support:功能检测：判断浏览器信息)
+    //(3184-3295行support:功能检测：判断浏览器信息) JQuery08.html
     //
-    //(3308-3652行data():数据缓存)
+    //(3308-3652行data():数据缓存) JQuery09.html
     //
-    //(3653-3797行queue():队列管理入队，dequeue()出队)
+    //(3653-3797行queue():队列管理入队，dequeue()出队)  JQuery10.html
     //
-    //(3803-4299行attr() prop() val() addClass()等：对元素属性的操作)
+    //(3803-4299行attr() prop() val() addClass()等：对元素属性的操作)  JQuery11.html
     //
     //(4300-5128行 on() trigger():事件操作的方法)
     //

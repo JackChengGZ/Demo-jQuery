@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="application/javascript" src="jQuery/jquery-2.0.3.js"></script>
+    <style type="text/css">
+        #div{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<script type="application/javascript">
+//    queue()  队列 执行顺序的管理
+//jQuery.extend({//通过extend扩展工具方法
+//    queue  相当于push
+//    dequeue 相当于shift  在队列中找到第一个元素
+//    _queueHooks//这个是一个私有的方法
+//})
+
+//jQuery.fn.extend({//这个是扩展的实例方法
+//    queue
+//    dequeue
+//    delay
+//    clearQueue
+//    promise
+//})
+
+//$(function(){
+//    function aaa(){
+//        alert(1);
+//    }
+//    $.queue(document,'q1',aaa);//在document下面简历一个q1队列，里面存储了一个aaa()
+//    $.queue(document,'q1',[aaa,bbb]);
+//    $.dequeue(document,'q1');//取出来第一个并调用
+//})
+
+
+    $(function(){
+//        $("#div").click(function(){
+//            $(this).animate({width:300},2000);
+//            $(this).animate({height:300},2000);
+//            $(this).animate({left:300},2000);
+////            当执行这三句话的时候就调用了queue
+//        })
+
+        $("#div").click(function(){
+//            delay():延迟队列的执行
+            $(this).animate({width:300},2000).delay(2000).animate({left:300},2000);
+        })
+
+    })
+
+</script>
+<div id="div"></div>
+</body>
+</html>
