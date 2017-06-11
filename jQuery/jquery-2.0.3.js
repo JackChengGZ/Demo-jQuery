@@ -3825,11 +3825,11 @@ jQuery.fn.extend({//这一部分主要是对元素属性的操作  这是扩展jQuery的实例方法
 	addClass: function( value ) {
 		var classes, elem, cur, clazz, j,
 			i = 0,
-			len = this.length,
-			proceed = typeof value === "string" && value;
+			len = this.length,//把对象的length存储一下
+			proceed = typeof value === "string" && value;//判断它是不是字符串类型
 
 		if ( jQuery.isFunction( value ) ) {
-			return this.each(function( j ) {
+			return this.each(function( j ) {//循环
 				jQuery( this ).addClass( value.call( this, j, this.className ) );
 			});
 		}
@@ -3840,7 +3840,7 @@ jQuery.fn.extend({//这一部分主要是对元素属性的操作  这是扩展jQuery的实例方法
 
 			for ( ; i < len; i++ ) {
 				elem = this[ i ];
-				cur = elem.nodeType === 1 && ( elem.className ?
+				cur = elem.nodeType === 1 && ( elem.className ?//这个主要是判断 class是否已经存在  如果存在，就把他们都存放在cur
 					( " " + elem.className + " " ).replace( rclass, " " ) :
 					" "
 				);
@@ -3848,24 +3848,24 @@ jQuery.fn.extend({//这一部分主要是对元素属性的操作  这是扩展jQuery的实例方法
 				if ( cur ) {
 					j = 0;
 					while ( (clazz = classes[j++]) ) {
-						if ( cur.indexOf( " " + clazz + " " ) < 0 ) {
+						if ( cur.indexOf( " " + clazz + " " ) < 0 ) {//这个是通过indexof判断是否有重复的
 							cur += clazz + " ";
 						}
 					}
-					elem.className = jQuery.trim( cur );
+					elem.className = jQuery.trim( cur );//把前后空格去除掉
 
 				}
 			}
 		}
 
-		return this;
+		return this;//在jQuery中的链式操作就是通过return this实现的  返回的是一个对象
 	},
 
-	removeClass: function( value ) {
+	removeClass: function( value ) {//这个其实和addClass差不多  如果不写value，那么会清空class
 		var classes, elem, cur, clazz, j,
 			i = 0,
 			len = this.length,
-			proceed = arguments.length === 0 || typeof value === "string" && value;
+			proceed = arguments.length === 0 || typeof value === "string" && value;//注意这个中&&的优先级高一些
 
 		if ( jQuery.isFunction( value ) ) {
 			return this.each(function( j ) {
@@ -3887,7 +3887,7 @@ jQuery.fn.extend({//这一部分主要是对元素属性的操作  这是扩展jQuery的实例方法
 					j = 0;
 					while ( (clazz = classes[j++]) ) {
 						// Remove *all* instances
-						while ( cur.indexOf( " " + clazz + " " ) >= 0 ) {
+						while ( cur.indexOf( " " + clazz + " " ) >= 0 ) {//这个是判断当class存在的时候
 							cur = cur.replace( " " + clazz + " ", " " );
 						}
 					}
@@ -3899,7 +3899,7 @@ jQuery.fn.extend({//这一部分主要是对元素属性的操作  这是扩展jQuery的实例方法
 		return this;
 	},
 
-	toggleClass: function( value, stateVal ) {
+	toggleClass: function( value, stateVal ) {//toggle是用来切换的，stateVal 这个值如果写的是true，不管有没这个class就变成了添加； false就是删除
 		var type = typeof value;
 
 		if ( typeof stateVal === "boolean" && type === "string" ) {
@@ -3945,7 +3945,7 @@ jQuery.fn.extend({//这一部分主要是对元素属性的操作  这是扩展jQuery的实例方法
 		});
 	},
 
-	hasClass: function( selector ) {
+	hasClass: function( selector ) {//这个是判断class有没有
 		var className = " " + selector + " ",
 			i = 0,
 			l = this.length;
@@ -3958,19 +3958,19 @@ jQuery.fn.extend({//这一部分主要是对元素属性的操作  这是扩展jQuery的实例方法
 		return false;
 	},
 
-	val: function( value ) {
+	val: function( value ) {//主要操作元素的value值  像input textare select
 		var hooks, ret, isFunction,
-			elem = this[0];
+			elem = this[0];//获取的时候一般都是获取集合的第一个元素
 
 		if ( !arguments.length ) {
-			if ( elem ) {
-				hooks = jQuery.valHooks[ elem.type ] || jQuery.valHooks[ elem.nodeName.toLowerCase() ];
+			if ( elem ) {//如果元素存在，就走这里执行获取操作
+				hooks = jQuery.valHooks[ elem.type ] || jQuery.valHooks[ elem.nodeName.toLowerCase() ];//先去找元素的type，如果没就去找nodeName
 
-				if ( hooks && "get" in hooks && (ret = hooks.get( elem, "value" )) !== undefined ) {
+				if ( hooks && "get" in hooks && (ret = hooks.get( elem, "value" )) !== undefined ) {//这个是当hooks存在get存在等，获取兼容性后的结果
 					return ret;
 				}
 
-				ret = elem.value;
+				ret = elem.value;//这个是当兼容性不存在，就是不是option select radio等，就直接设置值
 
 				return typeof ret === "string" ?
 					// handle most common string cases
@@ -3979,36 +3979,36 @@ jQuery.fn.extend({//这一部分主要是对元素属性的操作  这是扩展jQuery的实例方法
 					ret == null ? "" : ret;
 			}
 
-			return;
+			return;//如果走了获取的操作之后就不会走设置的操作，就直接return
 		}
 
-		isFunction = jQuery.isFunction( value );
+		isFunction = jQuery.isFunction( value );//首先判断设置的value是不是一个函数，如果是，就走回调的处理
 
 		return this.each(function( i ) {
 			var val;
 
-			if ( this.nodeType !== 1 ) {
+			if ( this.nodeType !== 1 ) {//判断是不是元素节点，因为只有元素节点才可以设置val
 				return;
 			}
 
-			if ( isFunction ) {
+			if ( isFunction ) {//是一个函数就走回调处理
 				val = value.call( this, i, jQuery( this ).val() );
 			} else {
-				val = value;
+				val = value;//否则直接执行字符串
 			}
 
 			// Treat null/undefined as ""; convert numbers to string
-			if ( val == null ) {
+			if ( val == null ) {//判断val是不是等于空 就是$("div").val(null)这个设置为空 ，一般不这么写
 				val = "";
-			} else if ( typeof val === "number" ) {
+			} else if ( typeof val === "number" ) {//将数字转为字符串
 				val += "";
-			} else if ( jQuery.isArray( val ) ) {
+			} else if ( jQuery.isArray( val ) ) {//如果val是一个数组
 				val = jQuery.map(val, function ( value ) {
 					return value == null ? "" : value + "";
 				});
 			}
 
-			hooks = jQuery.valHooks[ this.type ] || jQuery.valHooks[ this.nodeName.toLowerCase() ];
+			hooks = jQuery.valHooks[ this.type ] || jQuery.valHooks[ this.nodeName.toLowerCase() ];//这个跟get的一样，一个hooks的设置
 
 			// If set returns undefined, fall back to normal setting
 			if ( !hooks || !("set" in hooks) || hooks.set( this, val, "value" ) === undefined ) {
@@ -4019,12 +4019,12 @@ jQuery.fn.extend({//这一部分主要是对元素属性的操作  这是扩展jQuery的实例方法
 });
 
 jQuery.extend({//这些都是属性操作的工具方法
-	valHooks: {
+	valHooks: {//处理valHooks 主要是option select 的兼容性问题  其实还有radio和CheckBox 在最后有介绍
 		option: {
-			get: function( elem ) {
+			get: function( elem ) {//这个主要是在黑莓4.7的时候属性的值不存在是undefined  在IE低版本会有
 				// attributes.value is undefined in Blackberry 4.7 but
 				// uses .value. See #6932
-				var val = elem.attributes.value;
+				var val = elem.attributes.value;//在低版本下弹出object 会有一个specified
 				return !val || val.specified ? elem.value : elem.text;
 			}
 		},
@@ -4033,40 +4033,40 @@ jQuery.extend({//这些都是属性操作的工具方法
 				var value, option,
 					options = elem.options,
 					index = elem.selectedIndex,
-					one = elem.type === "select-one" || index < 0,
-					values = one ? null : [],
+					one = elem.type === "select-one" || index < 0,//如果select是单选，那么这个one就是true
+					values = one ? null : [],//如果one为真 就是一个值就是null  false就是多选就给一个数组
 					max = one ? index + 1 : options.length,
 					i = index < 0 ?
 						max :
 						one ? index : 0;
 
 				// Loop through all the selected options
-				for ( ; i < max; i++ ) {
+				for ( ; i < max; i++ ) {//这个循环就是根据是不是单选来的
 					option = options[ i ];
 
 					// IE6-9 doesn't update selected after form reset (#2551)
 					if ( ( option.selected || i === index ) &&
 							// Don't return options that are disabled or in a disabled optgroup
-							( jQuery.support.optDisabled ? !option.disabled : option.getAttribute("disabled") === null ) &&
+							( jQuery.support.optDisabled ? !option.disabled : option.getAttribute("disabled") === null ) &&//这个主要是看是不是被disabled禁用了  如果禁用了就不会将这个值放进数组
 							( !option.parentNode.disabled || !jQuery.nodeName( option.parentNode, "optgroup" ) ) ) {
 
 						// Get the specific value for the option
 						value = jQuery( option ).val();
 
 						// We don't need an array for one selects
-						if ( one ) {
+						if ( one ) {//是单选就直接返回值
 							return value;
 						}
 
 						// Multi-Selects return an array
-						values.push( value );
+						values.push( value );//不是单选就把值放到数组中直接返回
 					}
 				}
 
 				return values;
 			},
 
-			set: function( elem, value ) {
+			set: function( elem, value ) {//这个跟get差不多  但是主要是对val是数组的情况设置
 				var optionSet, option,
 					options = elem.options,
 					values = jQuery.makeArray( value ),
@@ -4110,24 +4110,24 @@ jQuery.extend({//这些都是属性操作的工具方法
 				( jQuery.expr.match.bool.test( name ) ? boolHook : nodeHook );
 		}
 
-		if ( value !== undefined ) {
+		if ( value !== undefined ) {//判断value如果不等于undefined
 
-			if ( value === null ) {
+			if ( value === null ) {//当它等于null的时候就调用的是removeAttr这个方法
 				jQuery.removeAttr( elem, name );
 
-			} else if ( hooks && "set" in hooks && (ret = hooks.set( elem, value, name )) !== undefined ) {
-				return ret;
+			} else if ( hooks && "set" in hooks && (ret = hooks.set( elem, value, name )) !== undefined ) {//这个是判断set的时候有没有兼容性
+				return ret;//如果有兼容性问题就先设置兼容性问题
 
 			} else {
-				elem.setAttribute( name, value + "" );
+				elem.setAttribute( name, value + "" );//如果没有兼容性问题就直接调用setAttribute原生的方法
 				return value;
 			}
 
-		} else if ( hooks && "get" in hooks && (ret = hooks.get( elem, name )) !== null ) {
-			return ret;
+		} else if ( hooks && "get" in hooks && (ret = hooks.get( elem, name )) !== null ) {//这个是判断get的时候有没有兼容性
+			return ret;//如果有兼容性问题就先设置兼容性问题
 
 		} else {
-			ret = jQuery.find.attr( elem, name );
+			ret = jQuery.find.attr( elem, name );//如果没有兼容性问题就直接调用attr()  其实这个是sizzle下面的一个attr()方法，只不过是sizzle把getAttribute封装成了attr()
 
 			// Non-existent attributes return null, we normalize to undefined
 			return ret == null ?
@@ -4139,11 +4139,11 @@ jQuery.extend({//这些都是属性操作的工具方法
 	removeAttr: function( elem, value ) {
 		var name, propName,
 			i = 0,
-			attrNames = value && value.match( core_rnotwhite );
+			attrNames = value && value.match( core_rnotwhite );//匹配没有空白的字符  调用match返回的是一个数组
 
 		if ( attrNames && elem.nodeType === 1 ) {
 			while ( (name = attrNames[i++]) ) {
-				propName = jQuery.propFix[ name ] || name;
+				propName = jQuery.propFix[ name ] || name;//propFix这个是一个对象，主要是针对兼容性写法
 
 				// Boolean attributes get special treatment (#10870)
 				if ( jQuery.expr.match.bool.test( name ) ) {
@@ -4158,8 +4158,8 @@ jQuery.extend({//这些都是属性操作的工具方法
 
 	attrHooks: {
 		type: {
-			set: function( elem, value ) {
-				if ( !jQuery.support.radioValue && value === "radio" && jQuery.nodeName(elem, "input") ) {
+			set: function( elem, value ) {//type 是radio的时候做一个hooks处理
+				if ( !jQuery.support.radioValue && value === "radio" && jQuery.nodeName(elem, "input") ) {//这个是在IE6-9属性兼容性的设置
 					// Setting the type on a radio button after the value resets the value in IE6-9
 					// Reset value to default in case type is set after value during creation
 					var val = elem.value;
@@ -4180,22 +4180,22 @@ jQuery.extend({//这些都是属性操作的工具方法
 
 	prop: function( elem, name, value ) {
 		var ret, hooks, notxml,
-			nType = elem.nodeType;
+			nType = elem.nodeType;//存储nodeType
 
 		// don't get/set properties on text, comment and attribute nodes
 		if ( !elem || nType === 3 || nType === 8 || nType === 2 ) {
 			return;
 		}
 
-		notxml = nType !== 1 || !jQuery.isXMLDoc( elem );
+		notxml = nType !== 1 || !jQuery.isXMLDoc( elem );//判断是不是xml
 
-		if ( notxml ) {
+		if ( notxml ) {//不是xml的情况
 			// Fix name and attach hooks
 			name = jQuery.propFix[ name ] || name;
 			hooks = jQuery.propHooks[ name ];
 		}
 
-		if ( value !== undefined ) {
+		if ( value !== undefined ) {//下面的也类似于attr
 			return hooks && "set" in hooks && (ret = hooks.set( elem, value, name )) !== undefined ?
 				ret :
 				( elem[ name ] = value );
@@ -4208,7 +4208,7 @@ jQuery.extend({//这些都是属性操作的工具方法
 	},
 
 	propHooks: {
-		tabIndex: {
+		tabIndex: {//这个可以设置光标切换位置  就是tab键的切换  就是在IE下不是input也会存在兼容性问题
 			get: function( elem ) {
 				return elem.hasAttribute( "tabindex" ) || rfocusable.test( elem.nodeName ) || elem.href ?
 					elem.tabIndex :
@@ -4230,7 +4230,7 @@ boolHook = {
 		return name;
 	}
 };
-jQuery.each( jQuery.expr.match.bool.source.match( /\w+/g ), function( i, name ) {
+jQuery.each( jQuery.expr.match.bool.source.match( /\w+/g ), function( i, name ) {//这个部分主要是针对sizzle的操作
 	var getter = jQuery.expr.attrHandle[ name ] || jQuery.find.attr;
 
 	jQuery.expr.attrHandle[ name ] = function( elem, name, isXML ) {
@@ -4254,7 +4254,7 @@ jQuery.each( jQuery.expr.match.bool.source.match( /\w+/g ), function( i, name ) 
 
 // Support: IE9+
 // Selectedness for an option in an optgroup can be inaccurate
-if ( !jQuery.support.optSelected ) {
+if ( !jQuery.support.optSelected ) {//下拉菜单的一个选中状态  这个是IE9下面的一个兼容性问题
 	jQuery.propHooks.selected = {
 		get: function( elem ) {
 			var parent = elem.parentNode;
@@ -4278,19 +4278,19 @@ jQuery.each([
 	"frameBorder",
 	"contentEditable"
 ], function() {
-	jQuery.propFix[ this.toLowerCase() ] = this;
+	jQuery.propFix[ this.toLowerCase() ] = this;//这个是大小写转换，防止在写的时候出问题
 });
 
 // Radios and checkboxes getter/setter
 jQuery.each([ "radio", "checkbox" ], function() {
-	jQuery.valHooks[ this ] = {
+	jQuery.valHooks[ this ] = {//这个也是设置的时候    当 val是一个数组
 		set: function( elem, value ) {
 			if ( jQuery.isArray( value ) ) {
 				return ( elem.checked = jQuery.inArray( jQuery(elem).val(), value ) >= 0 );
 			}
 		}
 	};
-	if ( !jQuery.support.checkOn ) {
+	if ( !jQuery.support.checkOn ) {//检测有没有checkon 没有的话就做个处理
 		jQuery.valHooks[ this ].get = function( elem ) {
 			// Support: Webkit
 			// "" is returned instead of "on" if a value isn't specified

@@ -34,10 +34,23 @@
 
 
     $(function(){
-        $("#div").attr();
+//        $("#div").attr();
+        $("#div").addClass(function(index){//一般会调函数这种形式的少
+            alert(index);//0
+        })
+
     })
 
 </script>
 <div id="div">aaaaaaaaaa</div>
+
+<select name="" id="">
+    <option value="12">111</option>
+    <!--$(" option").eq(0).get(0).value();这个弹出来的是12-->
+    <option value="12">222</option>
+    <!--$(" option").eq(0).get(0).value();这个弹出来的是222-->
+
+</select>
+
 </body>
 </html>
